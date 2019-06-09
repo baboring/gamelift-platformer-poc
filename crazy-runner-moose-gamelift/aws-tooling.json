@@ -1,0 +1,28 @@
+{
+  "$schema" : "./node_modules/@mdm373/aws-tooling-common/dist/aws-tooling.schema.json#",
+  "variables": {
+    "FLEET_ID": {"prod": "16", "test": "fleet-4121d3d4-71f1-49df-9070-54c0422d394e"}
+  },
+  "lambdaConfig": {
+    "lambdaRoleName": "lambda",
+    "functions" : [
+      { "name": "get-session" }
+    ]
+  },
+  "gatewayConfig" : {
+    "binaryTypes": [],
+    "roleName": "crm-all-gateway",
+    "resources": {
+      "path": "/",
+      "methods": [
+        {
+          "httpMethod": "GET",
+          "lambdaIntegration": {
+            "functionName": "get-session",
+            "requestTemplate": "__FILE__:./integration-templates/get-session.vtl"
+          }
+        }
+      ]
+    }
+  }
+}

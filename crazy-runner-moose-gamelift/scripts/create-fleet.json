@@ -1,0 +1,25 @@
+{
+    "Description": "Crazy Runner Moose Test Environment", 
+    "EC2InstanceType": "c4.large", 
+    "EC2InboundPermissions": [
+        {
+          "FromPort": 1800,
+          "ToPort": 2000,
+          "IpRange": "0.0.0.0/0",
+          "Protocol": "TCP"
+        }
+    ], 
+    "NewGameSessionProtectionPolicy": "NoProtection", 
+    "RuntimeConfiguration": {
+        "ServerProcesses": [
+            {
+                "LaunchPath": "/local/game/linux.x86_64", 
+                "Parameters": "-logFile /local/game/file.log", 
+                "ConcurrentExecutions": 1
+            }
+        ], 
+        "MaxConcurrentGameSessionActivations": 1, 
+        "GameSessionActivationTimeoutSeconds": 120
+    }, 
+    "FleetType": "ON_DEMAND"
+}

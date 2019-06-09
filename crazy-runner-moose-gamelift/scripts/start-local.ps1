@@ -1,0 +1,1 @@
+java -jar ../../gamelift-sdk/GameLiftLocal-Release-1.0.4/GameliftLocal.jar

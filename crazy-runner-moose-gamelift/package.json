@@ -1,0 +1,39 @@
+{
+  "name": "crazy-runner-moose-gamelift",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "DEL /S /Q dist >nul && RMDIR /S /Q dist || exit 0",
+    "lint": "tslint ./src/**/*.ts -p ./",
+    "transpile": "npm run clean && tsc",
+    "linted-transpile": "npm run clean && npm run lint && tsc",
+    "exec-get-session": "npm run linted-transpile && awstool exec-func -f dist/lambda/get-session -e test/get-session.json -t crm -i test/init",
+    "provision": "npm run transpile && awstool provision -t crm",
+    "elevate-gateway": "awstool elevate -t crm -y gateway",
+    "elevate-get-session": "awstool elevate -t crm -y lambda -n get-session",
+    "elevate": "run-s linted-transpile elevate-*",
+    "release-gateway": "awstool release -t crm -y gateway",
+    "release-get-session": "awstool release -t crm -y lambda -n get-session",
+    "release": "run-s release-*",
+    "print-get-session": "awstool print-logs -t crm -r test -n get-session"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git-codecommit.us-east-1.amazonaws.com/v1/repos/crazy-runner-moose-gamelift"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@mdm373/aws-tooling-common": "^1.1.1",
+    "@types/express": "^4.16.1",
+    "@types/node": "^10.7.0",
+    "@types/uuid": "^3.4.4",
+    "aws-sdk": "^2.390.0",
+    "express": "^4.17.1",
+    "npm-run-all": "^4.1.5",
+    "tslint": "^5.12.1",
+    "typescript": "^3.2.4",
+    "uuid": "^3.3.2"
+  }
+}
