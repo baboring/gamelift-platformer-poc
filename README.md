@@ -15,7 +15,7 @@ Server side unity game build. Acts as an authoritative server between clients. R
 
 ## Crazy Runner Moose Gamelift
 Contains node tasks to deploy gamelift api endpoints for session creation / query and scripts to run gamelift SDK and endpoints locally
-* aws-tooling.json relies on non release custom code to deploy /src/lambda code as AWS lambda with supporting API Gateway. 
+* aws-tooling.json relies on unrelease custom code to deploy /src/lambda code as AWS lambda with supporting API Gateway. (see @mdm373 node dependencies)
 * Implement by deploying lambda code with aws-tooling provided env vars and linking to API Gateway
 * Powershell scripts provided:
   *  upload-build: automate uploading server builds to Gamelift and deploying fleet for provided build
